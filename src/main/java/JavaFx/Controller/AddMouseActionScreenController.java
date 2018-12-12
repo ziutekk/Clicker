@@ -9,8 +9,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 
 import java.util.HashMap;
-
-import static JavaFx.Validation.ChoiceBoxValidation.setMouseButton;
 import static JavaFx.Validation.TextFieldValidation.*;
 
 
