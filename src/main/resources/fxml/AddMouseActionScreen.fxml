@@ -6,20 +6,20 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="JavaFx.Controller.AddMouseActionScreenController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="JavaFx.Controller.AddMouseActionScreenController">
    <children>
-      <Label layoutX="120.0" layoutY="14.0" text="Add action " />
-      <Button fx:id="btnSubmitMouseAction" layoutX="50.0" layoutY="249.0" mnemonicParsing="false" onAction="#submitMouseAction" text="Submit" />
-      <TextField fx:id="txtMouseActionName" layoutX="76.0" layoutY="45.0" />
-      <TextField fx:id="txtX" layoutX="77.0" layoutY="87.0" />
-      <TextField fx:id="txtY" layoutX="76.0" layoutY="125.0" />
-      <Label layoutX="22.0" layoutY="49.0" text="Name:" />
-      <Label layoutX="25.0" layoutY="91.0" text="X:" />
-      <Label layoutX="25.0" layoutY="129.0" text="Y:" />
-      <Label layoutX="23.0" layoutY="169.0" text="Delay:" />
-      <Label layoutX="25.0" layoutY="203.0" text="Button:" />
-      <TextField fx:id="txtDelay" layoutX="76.0" layoutY="165.0" />
-      <Button layoutX="199.0" layoutY="249.0" mnemonicParsing="false" onAction="#cancelAddMouseAction" text="Cancel" />
-      <ChoiceBox fx:id="btnMouseButton" layoutX="76.0" layoutY="199.0" prefWidth="150.0" />
+      <Label layoutX="285.0" layoutY="42.0" text="Add action " />
+      <Button fx:id="btnSubmitMouseAction" layoutX="214.0" layoutY="288.0" mnemonicParsing="false" onAction="#submitMouseAction" text="Submit" />
+      <TextField fx:id="txtMouseActionName" layoutX="240.0" layoutY="84.0" />
+      <TextField fx:id="txtX" layoutX="241.0" layoutY="126.0" />
+      <TextField fx:id="txtY" layoutX="240.0" layoutY="164.0" />
+      <Label layoutX="186.0" layoutY="88.0" text="Name:" />
+      <Label layoutX="189.0" layoutY="130.0" text="X:" />
+      <Label layoutX="189.0" layoutY="168.0" text="Y:" />
+      <Label layoutX="187.0" layoutY="208.0" text="Delay:" />
+      <Label layoutX="189.0" layoutY="242.0" text="Button:" />
+      <TextField fx:id="txtDelay" layoutX="240.0" layoutY="204.0" />
+      <Button layoutX="363.0" layoutY="288.0" mnemonicParsing="false" onAction="#cancelAddMouseAction" text="Cancel" />
+      <ChoiceBox fx:id="btnMouseButton" layoutX="240.0" layoutY="238.0" prefWidth="150.0" />
    </children>
 </Pane>
