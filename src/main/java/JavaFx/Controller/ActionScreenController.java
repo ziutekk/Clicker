@@ -1,23 +1,24 @@
 package JavaFx.Controller;
 
 import Clickers.Clicker;
-import Clickers.MouseClicker;
-import Static.Variables;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 
-import java.awt.event.InputEvent;
 import java.util.List;
 
 
 import static Controller.ClickerContainer.getClickerActions;
+import static JavaFx.Validation.TextFieldValidation.isValidInteger;
+import static JavaFx.Validation.TextFieldValidation.toInt;
 
 public class ActionScreenController {
 
@@ -40,9 +41,12 @@ public class ActionScreenController {
     @FXML
     private TableColumn<Clicker, Integer> tcKey;
 
+    @FXML
+    private TextField txtRepeatCount;
+
 
     @FXML
-    public void openCreationActionWindow() throws Exception{
+    public void openCreationMouseActionWindow() throws Exception{
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/AddMouseActionScreen.fxml"));
         Pane pane = loader.load();
 
@@ -51,18 +55,28 @@ public class ActionScreenController {
         mainController.setScreen(pane);
     }
 
-    public void getClickers(){
+    @FXML
+    public void openCreationKeyboardActionWindow() throws Exception{
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/AddKeyboardActionScreen.fxml"));
+        Pane pane = loader.load();
 
-        List<Clicker> clickerList = getClickerActions();
-        System.out.println(clickerList.size());
-        ObservableList<Clicker> clickerObservableList = FXCollections.observableArrayList();
-        clickerObservableList.add(new MouseClicker(800, Variables.X_FIND, Variables.Y_FIND, InputEvent.BUTTON1_MASK,"findPlayer"));
+        AddKeyboardActionScreenController addKeyboardActionScreenController = loader.getController();
+        addKeyboardActionScreenController.setMainController(mainController);
+        mainController.setScreen(pane);
+    }
 
-        copyArrayToObservableList(clickerList, clickerObservableList);
-        System.out.println(clickerObservableList.size());
+    @FXML
+    public void deleteAction() throws Exception{
+        Clicker selectedClicker = clickerTable.getSelectionModel().getSelectedItem();
+        mainController.getClickerContainer().deleteAction(selectedClicker);
+        mainController.loadMainScreen();
+    }
 
-
-        setTableFromObservableList(clickerObservableList);
+    @FXML
+    public void executeActions(){
+        if(isValidInteger(txtRepeatCount)){
+            mainController.getClickerContainer().executeList(toInt(txtRepeatCount));
+        }
     }
 
     private void setTableFromObservableList(ObservableList<Clicker> clickerObservableList) {
@@ -73,6 +87,12 @@ public class ActionScreenController {
         clickerObservableList.addAll(clickerList);
     }
 
+    private void fulfillTable(){
+        List<Clicker> clickerList = getClickerActions();
+        ObservableList<Clicker> clickerObservableList = FXCollections.observableArrayList();
+        copyArrayToObservableList(clickerList, clickerObservableList);
+        setTableFromObservableList(clickerObservableList);
+    }
 
     private void setUpColumns(){
         tcName.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -84,6 +104,6 @@ public class ActionScreenController {
 
     public void initializeActionsTable(){
         setUpColumns();
-        getClickers();
+        fulfillTable();
     }
 }
