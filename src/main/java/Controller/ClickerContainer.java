@@ -7,8 +7,12 @@ import java.util.List;
 
 public class ClickerContainer {
 
-    private List<Clicker> clickerActions;
+    private static List<Clicker> clickerActions;
     private Robot robot;
+
+    public static List<Clicker> getClickerActions() {
+        return clickerActions;
+    }
 
     public ClickerContainer(){
         clickerActions = new ArrayList<>();

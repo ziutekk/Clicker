@@ -1,15 +1,14 @@
 package Clickers;
 
 import Static.Variables;
-
 import java.awt.*;
-
 
 public class KeyboardClicker extends Clicker {
 
-    public KeyboardClicker(int delayAfterAction, int key){
+    public KeyboardClicker(int delayAfterAction, int key, String name){
         this.delayAfterAction = delayAfterAction;
         this.key = key;
+        this.name = name;
     }
 
     @Override

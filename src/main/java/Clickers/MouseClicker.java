@@ -5,14 +5,31 @@ import java.awt.Robot;
 
 public class MouseClicker extends Clicker {
 
-    private int x;
-    private int y;
+    private Integer x;
+    private Integer y;
 
-    public MouseClicker(int delayAfterAction, int x, int y, int key) {
+    public Integer getX() {
+        return x;
+    }
+
+    public void setX(Integer x) {
+        this.x = x;
+    }
+
+    public Integer getY() {
+        return y;
+    }
+
+    public void setY(Integer y) {
+        this.y = y;
+    }
+
+    public MouseClicker(int delayAfterAction, int x, int y, int key, String name) {
         this.delayAfterAction = delayAfterAction;
         this.x = x;
         this.y = y;
         this.key = key;
+        this.name = name;
     }
 
     @Override
