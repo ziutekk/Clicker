@@ -27,13 +27,21 @@ public class ClickerContainer {
         clickerActions.add(clicker);
     }
 
+    public void deleteAction(Clicker toDelete){
+        for (Clicker c: clickerActions) {
+            if(toDelete.equals(c)){
+                clickerActions.remove(toDelete);
+                break;
+            }
+        }
+    }
+
     public void executeList(int timesOfExecution){
 
-       for(int i = 1; i < timesOfExecution; i++){
+       for(int i = 0; i < timesOfExecution; i++){
            for(Clicker action: clickerActions){
                action.executeAction(robot);
            }
-           System.out.println(i);
        }
     }
 }
