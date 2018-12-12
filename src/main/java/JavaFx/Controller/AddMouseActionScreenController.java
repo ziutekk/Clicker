@@ -1,25 +1,26 @@
 package JavaFx.Controller;
 
 import Clickers.MouseClicker;
+import Static.Variables;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 
-import java.awt.event.InputEvent;
+import java.util.HashMap;
 
 import static JavaFx.Validation.ChoiceBoxValidation.setMouseButton;
 import static JavaFx.Validation.TextFieldValidation.*;
-import static java.awt.event.InputEvent.BUTTON1_MASK;
-import static java.awt.event.InputEvent.BUTTON2_MASK;
+
 
 public class AddMouseActionScreenController {
 
     private MainController mainController;
 
-    private ObservableList<String> typeClicks = FXCollections.observableArrayList("Left click", "Right click");
+    private HashMap<String, Integer> keys = Variables.fulfillMouseKeysMap();
+
+    private ObservableList<String> typeClicks = FXCollections.observableArrayList("Left Click", "Right Click");
 
     @FXML
     private TextField txtMouseActionName;
@@ -38,7 +39,6 @@ public class AddMouseActionScreenController {
 
     @FXML
     public void initialize(){
-
         btnMouseButton.setValue("Left click");
         btnMouseButton.setItems(typeClicks);
     }
@@ -53,7 +53,7 @@ public class AddMouseActionScreenController {
             MouseClicker mc = new MouseClicker(toInt(txtDelay),
                                                 toInt(txtX),
                                                 toInt(txtY),
-                                                setMouseButton(btnMouseButton.getValue()),
+                                                keys.get(btnMouseButton.getValue()),
                                                 txtMouseActionName.getText());
             mainController.getClickerContainer().addAction(mc);
         }

@@ -1,17 +1,14 @@
 package JavaFx.Controller;
 
 import Clickers.KeyboardClicker;
-import Clickers.MouseClicker;
 import Static.Variables;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import java.util.HashMap;
 
-import static JavaFx.Validation.ChoiceBoxValidation.setMouseButton;
 import static JavaFx.Validation.TextFieldValidation.isFilled;
 import static JavaFx.Validation.TextFieldValidation.isValidInteger;
 import static JavaFx.Validation.TextFieldValidation.toInt;
@@ -20,7 +17,7 @@ public class AddKeyboardActionScreenController {
 
     private MainController mainController;
 
-    private HashMap<String, Integer> keys = Variables.fulfillKeysMap();
+    private HashMap<String, Integer> keys = Variables.fulfillKeyboardKeysMap();
 
     private ObservableList<String> typeKeys = FXCollections.observableArrayList();
 
