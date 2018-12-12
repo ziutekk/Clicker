@@ -10,6 +10,11 @@ import javafx.scene.control.TextField;
 
 import java.awt.event.InputEvent;
 
+import static JavaFx.Validation.ChoiceBoxValidation.setMouseButton;
+import static JavaFx.Validation.TextFieldValidation.*;
+import static java.awt.event.InputEvent.BUTTON1_MASK;
+import static java.awt.event.InputEvent.BUTTON2_MASK;
+
 public class AddMouseActionScreenController {
 
     private MainController mainController;
@@ -32,16 +37,11 @@ public class AddMouseActionScreenController {
     private ChoiceBox<String> btnMouseButton;
 
     @FXML
-    private Button btnSubmitMouseAction;
-
-    @FXML
     public void initialize(){
+
         btnMouseButton.setValue("Left click");
         btnMouseButton.setItems(typeClicks);
-//        btnSubmitMouseAction.setOnAction();
-
     }
-
 
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
@@ -49,11 +49,11 @@ public class AddMouseActionScreenController {
 
     @FXML
     public void submitMouseAction() throws Exception{
-        if(isInt(txtX) && isInt(txtY) && isInt(txtDelay) && areFieldFilled()){
+        if(isValidInteger(txtX) && isValidInteger(txtY) && isValidInteger(txtDelay) && isFilled(txtMouseActionName) ){
             MouseClicker mc = new MouseClicker(toInt(txtDelay),
                                                 toInt(txtX),
                                                 toInt(txtY),
-                                                setMouseButton(btnMouseButton),
+                                                setMouseButton(btnMouseButton.getValue()),
                                                 txtMouseActionName.getText());
             mainController.getClickerContainer().addAction(mc);
         }
@@ -64,33 +64,6 @@ public class AddMouseActionScreenController {
     public void cancelAddMouseAction() throws Exception{
         mainController.loadMainScreen();
     }
-
-    private int setMouseButton(ChoiceBox input){
-        if(input.getValue().equals("Left click")){
-            return InputEvent.BUTTON1_MASK;
-        }
-        return InputEvent.BUTTON2_MASK;
-    }
-
-    private boolean isInt(TextField input){
-        String str = input.getText();
-        try{
-            Integer.parseInt(str);
-            return true;
-        }
-        catch (NumberFormatException e){
-            return false;
-        }
-    }
-
-    private int toInt(TextField input){
-        return Integer.parseInt(input.getText());
-    }
-
-    private boolean areFieldFilled(){
-        return !this.txtMouseActionName.getText().equals("")
-                && !this.txtX.getText().equals("")
-                && !this.txtY.getText().equals("")
-                && !this.txtDelay.getText().equals("");
-    }
 }
+
+
