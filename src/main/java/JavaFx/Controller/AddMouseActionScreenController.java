@@ -37,7 +37,6 @@ public class AddMouseActionScreenController {
 
     @FXML
     public void initialize(){
-        btnMouseButton.setValue("Left click");
         btnMouseButton.setItems(typeClicks);
     }
 

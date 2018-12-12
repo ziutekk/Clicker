@@ -1,6 +1,8 @@
 package Controller;
 
 import Clickers.Clicker;
+import Static.Script;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +25,11 @@ public class ClickerContainer {
         }
     }
 
+    public void insertScript(Script script){
+        clickerActions.clear();
+        clickerActions.addAll(script.getClickerActions());
+    }
+
     public void addAction(Clicker clicker){
         clickerActions.add(clicker);
     }
@@ -36,8 +43,8 @@ public class ClickerContainer {
         }
     }
 
-    public void executeList(int timesOfExecution){
-
+    public void executeList(int timesOfExecution, int delay){
+        robot.delay(delay);
        for(int i = 0; i < timesOfExecution; i++){
            for(Clicker action: clickerActions){
                action.executeAction(robot);

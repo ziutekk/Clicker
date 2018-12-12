@@ -3,7 +3,6 @@ package JavaFx.Controller;
 import Clickers.Clicker;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
@@ -44,14 +43,17 @@ public class ActionScreenController {
     @FXML
     private TextField txtRepeatCount;
 
+    @FXML
+    private TextField txtExecutionDelay;
+
 
     @FXML
     public void openCreationMouseActionWindow() throws Exception{
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/AddMouseActionScreen.fxml"));
         Pane pane = loader.load();
 
-        AddMouseActionScreenController addMouseActionControllerScreen = loader.getController();
-        addMouseActionControllerScreen.setMainController(mainController);
+        AddMouseActionScreenController controller = loader.getController();
+        controller.setMainController(mainController);
         mainController.setScreen(pane);
     }
 
@@ -60,8 +62,8 @@ public class ActionScreenController {
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/AddKeyboardActionScreen.fxml"));
         Pane pane = loader.load();
 
-        AddKeyboardActionScreenController addKeyboardActionScreenController = loader.getController();
-        addKeyboardActionScreenController.setMainController(mainController);
+        AddKeyboardActionScreenController controller = loader.getController();
+        controller.setMainController(mainController);
         mainController.setScreen(pane);
     }
 
@@ -74,9 +76,21 @@ public class ActionScreenController {
 
     @FXML
     public void executeActions(){
-        if(isValidInteger(txtRepeatCount)){
-            mainController.getClickerContainer().executeList(toInt(txtRepeatCount));
+        if(isValidInteger(txtRepeatCount) && isValidInteger(txtExecutionDelay)){
+            mainController.getClickerContainer().executeList(toInt(txtRepeatCount), toInt(txtExecutionDelay));
         }
+    }
+
+    @FXML
+    public void insertSnipingFifaScript() throws Exception{
+//        ClickerContainer clickerContainer = mainController.getClickerContainer();
+//        clickerContainer.deleteAllActions();
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/BuyingFifaScriptScreen.fxml"));
+        Pane pane = loader.load();
+
+        BuyingFifaScriptScreenController controller = loader.getController();
+        controller.setMainController(mainController);
+        mainController.setScreen(pane);
     }
 
     private void setTableFromObservableList(ObservableList<Clicker> clickerObservableList) {
