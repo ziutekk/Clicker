@@ -1,5 +1,10 @@
 package Static;
 
+import java.util.HashMap;
+
+
+import static java.awt.event.KeyEvent.*;
+
 public class Variables {
 
     public static Integer X_FIND = 1182;
@@ -37,5 +42,29 @@ public class Variables {
 
     public static int getRandomCoordinate(){
         return getRandomNumber(-5, 5);
+    }
+
+    HashMap<String, Integer> keys = new HashMap<>();
+
+    public static HashMap<String, Integer> fulfillKeyboardKeysMap(){
+        HashMap<String, Integer> keys = new HashMap<>();
+        keys.put("0", VK_0);
+        keys.put("1", VK_1);
+        keys.put("2", VK_2);
+        keys.put("3", VK_3);
+        keys.put("4", VK_4);
+        keys.put("5", VK_5);
+        keys.put("6", VK_6);
+        keys.put("7", VK_7);
+        keys.put("8", VK_8);
+        keys.put("9", VK_9);
+        return keys;
+    }
+
+    public static HashMap<String, Integer> fulfillMouseKeysMap(){
+        HashMap<String, Integer> keys = new HashMap<>();
+        keys.put("Left Click", BUTTON1_MASK);
+        keys.put("Right Click", BUTTON2_MASK);
+        return keys;
     }
 }
