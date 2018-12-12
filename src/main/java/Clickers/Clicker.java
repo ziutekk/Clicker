@@ -1,8 +1,10 @@
 package Clickers;
 
 import java.awt.*;
+import java.util.concurrent.atomic.AtomicLong;
 
 public abstract class Clicker {
+
     Integer key;
     Integer delayAfterAction;
     String name;
