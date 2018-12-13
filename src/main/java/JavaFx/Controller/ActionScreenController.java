@@ -26,7 +26,7 @@ public class ActionScreenController {
 
     private MainController mainController;
 
-    public void setMainController(MainController mainController) {
+    void setMainController(MainController mainController) {
         this.mainController = mainController;
     }
 
@@ -117,15 +117,19 @@ public class ActionScreenController {
         tcKey.setCellValueFactory(new PropertyValueFactory<>("key"));
     }
 
-    public void initializeActionsTable(){
+    void initializeActionsTable(){
+        setTableCellsEditable();
+
+        setUpColumns();
+        fulfillTable();
+    }
+
+    private void setTableCellsEditable(){
         clickerTable.setEditable(true);
         tcName.setCellFactory(TextFieldTableCell.forTableColumn());
         tcDelay.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         tcX.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         tcY.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-
-        setUpColumns();
-        fulfillTable();
     }
 
 
