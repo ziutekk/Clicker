@@ -1,6 +1,7 @@
 package JavaFx.Controller;
 
 import Clickers.Clicker;
+import Clickers.MouseClicker;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,7 +11,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.Pane;
+import javafx.util.converter.IntegerStringConverter;
 
 import java.util.List;
 
@@ -83,8 +86,6 @@ public class ActionScreenController {
 
     @FXML
     public void insertSnipingFifaScript() throws Exception{
-//        ClickerContainer clickerContainer = mainController.getClickerContainer();
-//        clickerContainer.deleteAllActions();
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/BuyingFifaScriptScreen.fxml"));
         Pane pane = loader.load();
 
@@ -117,7 +118,34 @@ public class ActionScreenController {
     }
 
     public void initializeActionsTable(){
+        clickerTable.setEditable(true);
+        tcName.setCellFactory(TextFieldTableCell.forTableColumn());
+        tcDelay.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        tcX.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        tcY.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+
         setUpColumns();
         fulfillTable();
+    }
+
+
+    public void changeNameCellEvent(TableColumn.CellEditEvent c) {
+        Clicker clickerSelected =  clickerTable.getSelectionModel().getSelectedItem();
+        clickerSelected.setName(c.getNewValue().toString());
+    }
+
+    public void changeDelayCellEvent(TableColumn.CellEditEvent c) {
+        Clicker clickerSelected =  clickerTable.getSelectionModel().getSelectedItem();
+        clickerSelected.setDelayAfterAction((int)c.getNewValue());
+    }
+
+    public void changeXCellEvent(TableColumn.CellEditEvent c) {
+        Clicker clickerSelected = clickerTable.getSelectionModel().getSelectedItem();
+        ((MouseClicker) clickerSelected).setX((int)c.getNewValue());
+    }
+
+    public void changeYCellEvent(TableColumn.CellEditEvent c) {
+        Clicker clickerSelected = clickerTable.getSelectionModel().getSelectedItem();
+        ((MouseClicker) clickerSelected).setY((int)c.getNewValue());
     }
 }
