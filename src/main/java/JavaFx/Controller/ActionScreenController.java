@@ -2,19 +2,25 @@ package JavaFx.Controller;
 
 import Clickers.Clicker;
 import Clickers.MouseClicker;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.util.converter.IntegerStringConverter;
-
 import java.util.List;
 
 
@@ -22,7 +28,7 @@ import static Controller.ClickerContainer.getClickerActions;
 import static JavaFx.Validation.TextFieldValidation.isValidInteger;
 import static JavaFx.Validation.TextFieldValidation.toInt;
 
-public class ActionScreenController {
+public class ActionScreenController implements EventHandler<KeyEvent> {
 
     private MainController mainController;
 
@@ -49,6 +55,12 @@ public class ActionScreenController {
     @FXML
     private TextField txtExecutionDelay;
 
+    @FXML
+    private Label monitored;
+
+    @FXML
+    private Button btnToStop;
+
 
     @FXML
     public void openCreationMouseActionWindow() throws Exception{
@@ -73,7 +85,9 @@ public class ActionScreenController {
     @FXML
     public void deleteAction() throws Exception{
         Clicker selectedClicker = clickerTable.getSelectionModel().getSelectedItem();
-        mainController.getClickerContainer().deleteAction(selectedClicker);
+        int selectedIndex = clickerTable.getSelectionModel().getSelectedIndex();
+        System.out.println("selectedIndex = " + selectedIndex);
+        mainController.getClickerContainer().deleteAction(selectedClicker, selectedIndex);
         mainController.loadMainScreen();
     }
 
@@ -118,8 +132,8 @@ public class ActionScreenController {
     }
 
     void initializeActionsTable(){
+        btnToStop.setOnKeyPressed(this);
         setTableCellsEditable();
-
         setUpColumns();
         fulfillTable();
     }
@@ -151,5 +165,34 @@ public class ActionScreenController {
     public void changeYCellEvent(TableColumn.CellEditEvent c) {
         Clicker clickerSelected = clickerTable.getSelectionModel().getSelectedItem();
         ((MouseClicker) clickerSelected).setY((int)c.getNewValue());
+    }
+
+    @FXML
+    public void getMouseCoordinates() {
+//        PointerInfo a = MouseInfo.getPointerInfo();
+//        Point b = a.getLocation();
+//        int x = (int) b.getX();
+//        int y = (int) b.getY();
+//        monitored.setText(x + " " + y);
+    }
+
+    @FXML
+    public void moveUpSelectedClicker() throws Exception{
+        int selectedClickerIndex = clickerTable.getSelectionModel().getFocusedIndex();
+        mainController.getClickerContainer().moveClicker(selectedClickerIndex,"up");
+        mainController.loadMainScreen();
+    }
+
+    @FXML
+    public void moveDownSelectedClicker() throws Exception {
+        int selectedClickerIndex = clickerTable.getSelectionModel().getFocusedIndex();
+        mainController.getClickerContainer().moveClicker(selectedClickerIndex,"down");
+        mainController.loadMainScreen();
+    }
+
+
+    @Override
+    public void handle(KeyEvent event) {
+        btnToStop.setText(event.getCode().toString());
     }
 }

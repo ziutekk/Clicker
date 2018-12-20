@@ -20,4 +20,6 @@ public class Main extends Application {
         primaryStage.setTitle("Auto Clicker 1.0 ziutekk");
         primaryStage.show();
     }
+
 }
+

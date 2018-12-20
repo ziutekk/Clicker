@@ -8,28 +8,28 @@ import static java.awt.event.KeyEvent.*;
 public class Variables {
 
     public static Integer X_FIND = 1182;
-    public static Integer Y_FIND = 935;
+    public static Integer Y_FIND = 920;
 
-    public static Integer X_BUYNOW = 1700;
-    public static Integer Y_BUYNOW = 657;
+    public static Integer X_BUY_NOW = 1700;
+    public static Integer Y_BUY_NOW = 685;
 
-    public static Integer X_CONFIRM_BUYNOW = 1006;
-    public static Integer Y_CONFIRM_BUYNOW = 636;
+    public static Integer X_CONFIRM_BUY_NOW = 1006;
+    public static Integer Y_CONFIRM_BUY_NOW = 637;
 
     public static Integer X_BACK = 92;
-    public static Integer Y_BACK = 159;
+    public static Integer Y_BACK = 180;
 
-    public static Integer X_PRIZEUP = 1302;
-    public static Integer Y_PRIZEUP = 684;
+    public static Integer X_PRIZE_UP = 1301;
+    public static Integer Y_PRIZE_UP = 700;
 
-    public static Integer X_PRIZEDOWN = 1023;
-    public static Integer Y_PRIZEDOWN = 684;
+    public static Integer X_PRIZE_DOWN = 1023;
+    public static Integer Y_PRIZE_DOWN = 700;
 
     public static Integer X_SEND = 1698;
-    public static Integer Y_SEND = 712;
+    public static Integer Y_SEND = 728;
 
     public static Integer X_PRIZE_PLACEHOLDER = 1160;
-    public static Integer Y_PRIZE_PLACEHOLDER = 685;
+    public static Integer Y_PRIZE_PLACEHOLDER = 700;
 
     private static int getRandomNumber(double min, double max){
         double x = (Math.random()*((max-min)+1))+min;
@@ -44,7 +44,6 @@ public class Variables {
         return getRandomNumber(-5, 5);
     }
 
-    HashMap<String, Integer> keys = new HashMap<>();
 
     public static HashMap<String, Integer> fulfillKeyboardKeysMap(){
         HashMap<String, Integer> keys = new HashMap<>();

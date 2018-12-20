@@ -3,14 +3,11 @@ package Static;
 import Clickers.Clicker;
 import Clickers.KeyboardClicker;
 import Clickers.MouseClicker;
-import Controller.ClickerContainer;
 
 import java.awt.event.InputEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import static java.awt.event.KeyEvent.VK_1;
 
 public class Script {
 
@@ -30,10 +27,10 @@ public class Script {
         clickerActions = new ArrayList<>();
 
         Clicker findPlayer = new MouseClicker(800, Variables.X_FIND, Variables.Y_FIND, InputEvent.BUTTON1_MASK, "find player");
-        Clicker buyPlayer = new MouseClicker(500, Variables.X_BUYNOW, Variables.Y_BUYNOW, InputEvent.BUTTON1_MASK, "buy player");
-        Clicker confirmBuy = new MouseClicker(700, Variables.X_CONFIRM_BUYNOW, Variables.Y_CONFIRM_BUYNOW, InputEvent.BUTTON1_MASK, "confirm buy");
+        Clicker buyPlayer = new MouseClicker(500, Variables.X_BUY_NOW, Variables.Y_BUY_NOW, InputEvent.BUTTON1_MASK, "buy player");
+        Clicker confirmBuy = new MouseClicker(700, Variables.X_CONFIRM_BUY_NOW, Variables.Y_CONFIRM_BUY_NOW, InputEvent.BUTTON1_MASK, "confirm buy");
         Clicker back = new MouseClicker(1000, Variables.X_BACK, Variables.Y_BACK, InputEvent.BUTTON1_MASK, "back");
-        Clicker prizeUp = new MouseClicker(400, Variables.X_PRIZEUP, Variables.Y_PRIZEUP, InputEvent.BUTTON1_MASK, "prize up");
+        Clicker prizeUp = new MouseClicker(400, Variables.X_PRIZE_UP, Variables.Y_PRIZE_UP, InputEvent.BUTTON1_MASK, "prize up");
         Clicker send = new MouseClicker(800, Variables.X_SEND, Variables.Y_SEND, InputEvent.BUTTON1_MASK, "send to transfer list");
         Clicker markPrize = new MouseClicker(400, Variables.X_PRIZE_PLACEHOLDER, Variables.Y_PRIZE_PLACEHOLDER, InputEvent.BUTTON1_MASK, "mark prize");
 
