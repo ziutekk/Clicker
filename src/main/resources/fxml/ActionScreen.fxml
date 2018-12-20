@@ -10,24 +10,24 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="JavaFx.Controller.ActionScreenController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="659.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="JavaFx.Controller.ActionScreenController">
    <children>
-      <Button fx:id="AddMouseActionButton" layoutX="14.0" layoutY="100.0" mnemonicParsing="false" onAction="#openCreationMouseActionWindow" prefHeight="25.0" prefWidth="134.0" text="Add Mouse Action" />
-      <TableView fx:id="clickerTable" layoutX="155.0" layoutY="100.0" prefHeight="200.0" prefWidth="427.0">
+      <Button fx:id="AddMouseActionButton" layoutX="36.0" layoutY="100.0" mnemonicParsing="false" onAction="#openCreationMouseActionWindow" prefHeight="25.0" prefWidth="135.0" text="Add Mouse Action" />
+      <TableView fx:id="clickerTable" layoutX="184.0" layoutY="101.0" prefHeight="200.0" prefWidth="427.0">
         <columns>
-          <TableColumn fx:id="tcName" prefWidth="115.0" text="Name" />
+          <TableColumn fx:id="tcName" onEditCommit="#changeNameCellEvent" prefWidth="115.0" text="Name" />
           <TableColumn fx:id="tcKey" prefWidth="79.0" text="Key" />
-            <TableColumn fx:id="tcDelay" prefWidth="65.0" text="Delay" />
-            <TableColumn fx:id="tcX" prefWidth="76.0" text="X" />
-            <TableColumn fx:id="tcY" prefWidth="72.0" text="Y" />
+            <TableColumn fx:id="tcDelay" onEditCommit="#changeDelayCellEvent" prefWidth="65.0" text="Delay" />
+            <TableColumn fx:id="tcX" onEditCommit="#changeXCellEvent" prefWidth="76.0" text="X" />
+            <TableColumn fx:id="tcY" onEditCommit="#changeYCellEvent" prefWidth="72.0" text="Y" />
         </columns>
       </TableView>
-      <Button layoutX="504.0" layoutY="354.0" mnemonicParsing="false" onAction="#executeActions" prefHeight="25.0" prefWidth="59.0" text="Start" />
-      <TextField fx:id="txtRepeatCount" layoutX="420.0" layoutY="313.0" prefHeight="25.0" prefWidth="59.0" />
-      <Label layoutX="327.0" layoutY="317.0" text="Repeat Count:" />
-      <Button fx:id="DeleteActionButton" layoutX="14.0" layoutY="174.0" mnemonicParsing="false" onAction="#deleteAction" prefHeight="25.0" prefWidth="134.0" text="Delete Action" />
-      <Button fx:id="AddKeyboardActionButton" layoutX="14.0" layoutY="137.0" mnemonicParsing="false" onAction="#openCreationKeyboardActionWindow" prefHeight="25.0" prefWidth="134.0" text="Add Keyboard Action" />
-      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="600.0">
+      <Button fx:id="btnStart" layoutX="36.0" layoutY="317.0" mnemonicParsing="false" onAction="#executeActions" prefHeight="25.0" prefWidth="59.0" text="Start" />
+      <TextField fx:id="txtRepeatCount" layoutX="461.0" layoutY="313.0" prefHeight="25.0" prefWidth="59.0" />
+      <Label fx:id="labelPressToStop" layoutX="33.0" layoutY="359.0" text="To stop:" />
+      <Button fx:id="DeleteActionButton" layoutX="36.0" layoutY="174.0" mnemonicParsing="false" onAction="#deleteAction" prefHeight="25.0" prefWidth="135.0" text="Delete Action" />
+      <Button fx:id="AddKeyboardActionButton" layoutX="36.0" layoutY="137.0" mnemonicParsing="false" onAction="#openCreationKeyboardActionWindow" prefHeight="25.0" prefWidth="135.0" text="Add Keyboard Action" />
+      <MenuBar layoutX="32.0" layoutY="2.0" prefHeight="29.0" prefWidth="627.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
@@ -41,7 +41,12 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Label layoutX="282.0" layoutY="358.0" text="Delay Before Start[ms]:" />
-      <TextField fx:id="txtExecutionDelay" layoutX="420.0" layoutY="354.0" prefHeight="25.0" prefWidth="59.0" />
+      <Label layoutX="300.0" layoutY="318.0" text="Repeat Count:" />
+      <TextField fx:id="txtExecutionDelay" layoutX="461.0" layoutY="354.0" prefHeight="25.0" prefWidth="59.0" />
+      <Label fx:id="monitored" layoutX="599.0" layoutY="369.0" onMouseClicked="#getMouseCoordinates" text="Label" />
+      <Button layoutX="35.0" layoutY="210.0" mnemonicParsing="false" onAction="#moveUpSelectedClicker" prefHeight="25.0" prefWidth="135.0" text="Move Up" />
+      <Button layoutX="35.0" layoutY="247.0" mnemonicParsing="false" onAction="#moveDownSelectedClicker" prefHeight="25.0" prefWidth="135.0" text="Move Down" />
+      <Button fx:id="btnToStop" layoutX="111.0" layoutY="355.0" mnemonicParsing="false" text="Input" />
+      <Label layoutX="298.0" layoutY="360.0" text="Delay Before Start[ms]:" />
    </children>
 </Pane>
